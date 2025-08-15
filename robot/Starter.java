@@ -25,5 +25,25 @@ public class Starter implements Directions{
     rob.turnLeft();
     rob.turnLeft();
     rob.turnLeft();
+    for(int i = 0; i <= 5; i++){
+      rob.move();
+      rob.putBeeper();
+    }
+    rob.putBeeper();
+    rob.turnLeft();
+    rob.turnLeft();
+    rob.turnLeft();
+    for(int i = 0; i <= 4; i++){
+      rob.move();
+      rob.putBeeper();
+    }
+    rob.putBeeper();
+    rob.turnLeft();
+    rob.turnLeft();
+    rob.turnLeft();
+    for(int i = 0; i <= 5; i++){
+      rob.move();
+      rob.putBeeper();
+    }
   }
 }
