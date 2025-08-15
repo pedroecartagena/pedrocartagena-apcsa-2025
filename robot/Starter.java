@@ -57,6 +57,41 @@ public class Starter implements Directions{
     rob.move();
     rob.move();
     rob.move();
-    rob.move();
+
+    // letter C
+    bob.move();
+    bob.putBeeper();
+    bob.move();
+    bob.putBeeper();
+    bob.move();
+    bob.putBeeper();
+    bob.move();
+    bob.putBeeper();
+    bob.move();
+    bob.putBeeper();
+    bob.move();
+    bob.putBeeper();
+    bob.move();
+    bob.putBeeper();
+    bob.move();
+    bob.putBeeper();
+    bob.move();
+    bob.putBeeper();
+    bob.move();
+    bob.putBeeper();
+    bob.move();
+    bob.putBeeper();
+    bob.turnLeft();
+    bob.turnLeft();
+    bob.move();
+    bob.move();
+    bob.move();
+    bob.move();
+    bob.move();
+    bob.move();
+    bob.move();
+    bob.move();
+    bob.move();
+    bob.move();
   }
 }
