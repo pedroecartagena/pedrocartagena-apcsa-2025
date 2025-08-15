@@ -15,7 +15,7 @@ public class Starter implements Directions{
     // Find out what the numbers and direction do!
     // Put rob in a better location for your initials.
     Robot rob = new Robot(4,2,North,50);
-    Robot bob = new Robot(15, 11,South,50);
+    Robot bob = new Robot(5, 18,West,50);
 
     //letter P
     for(int i = 0; i <= 10; i++) {
@@ -45,5 +45,26 @@ public class Starter implements Directions{
       rob.move();
       rob.putBeeper();
     }
+
+    //letter C
+    for(int i = 0; i <= 6; i++) {
+      bob.move();
+      bob.putBeeper();
+    }
+    bob.turnLeft();
+    bob.turnLeft();
+    bob.turnLeft();
+    for(int i = 0; i <= 9; i++) {
+      bob.move();
+      bob.putBeeper();
+    }
+    bob.turnLeft();
+    bob.turnLeft();
+    bob.turnLeft();
+    for(int i = 0; i <= 6; i++) {
+      bob.move();
+      bob.putBeeper();
+    }
+    bob.move();
   }
 }
