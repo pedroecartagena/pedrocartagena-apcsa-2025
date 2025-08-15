@@ -22,25 +22,18 @@ public class Starter implements Directions{
       rob.move();
       rob.putBeeper();
     }
-    rob.turnLeft();
-    rob.turnLeft();
-    rob.turnLeft();
+    turnRight(rob);
     for(int i = 0; i <= 5; i++){
       rob.move();
       rob.putBeeper();
     }
-    rob.putBeeper();
-    rob.turnLeft();
-    rob.turnLeft();
-    rob.turnLeft();
+    turnRight(rob);
     for(int i = 0; i <= 4; i++){
       rob.move();
       rob.putBeeper();
     }
     rob.putBeeper();
-    rob.turnLeft();
-    rob.turnLeft();
-    rob.turnLeft();
+    turnRight(rob);
     for(int i = 0; i <= 5; i++){
       rob.move();
       rob.putBeeper();
@@ -51,20 +44,22 @@ public class Starter implements Directions{
       bob.move();
       bob.putBeeper();
     }
-    bob.turnLeft();
-    bob.turnLeft();
-    bob.turnLeft();
+    turnRight(bob);
     for(int i = 0; i <= 9; i++) {
       bob.move();
       bob.putBeeper();
     }
-    bob.turnLeft();
-    bob.turnLeft();
-    bob.turnLeft();
+    turnRight(bob);
     for(int i = 0; i <= 6; i++) {
       bob.move();
       bob.putBeeper();
     }
-    bob.move();
+    
+  }
+
+  private static void turnRight(final Robot robot) {
+    robot.turnLeft();
+    robot.turnLeft();
+    robot.turnLeft();
   }
 }
