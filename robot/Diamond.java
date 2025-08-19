@@ -16,7 +16,7 @@ public class Diamond implements Directions{
         // Put rob in a better location for your initials.
         Robot rob = new Robot(6,2,North,90);
 
-        createDiagonal(rob, 5);
+        createOctagon(rob, 4);
     }
 
     public static void turnRight(final Robot robot) {
@@ -25,7 +25,7 @@ public class Diamond implements Directions{
             robot.turnLeft();
         } 
 
-    private static void createDiagonal(final Robot robot, final int length) {
+    private static void createOctagon(final Robot robot, final int length) {
         for(int i = 1; i<=length; i++){
             robot.move();
             turnRight(robot);
@@ -35,8 +35,6 @@ public class Diamond implements Directions{
             robot.move();
             robot.putBeeper();
             turnRight(robot);
-            robot.move();
-            robot.putBeeper();
             robot.move();
             robot.putBeeper();
             robot.move();
