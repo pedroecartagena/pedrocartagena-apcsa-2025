@@ -14,9 +14,15 @@ public class Diamond implements Directions{
         // The line below creates a Robot that we will refer to as rob
         // Find out what the numbers and direction do!
         // Put rob in a better location for your initials.
-        Robot rob = new Robot(6,2,North,90);
+        Robot rob = new Robot(5,1,North,90);
 
-        createOctagon(rob, 4);
+        createDiagonal(rob, 4);
+        turnRight(rob);
+        createDiagonal(rob, 4);
+        turnRight(rob);
+        createDiagonal(rob, 4);
+        turnRight(rob);
+        createDiagonal(rob, 4);
     }
 
     public static void turnRight(final Robot robot) {
@@ -25,22 +31,14 @@ public class Diamond implements Directions{
             robot.turnLeft();
         } 
 
-    private static void createOctagon(final Robot robot, final int length) {
+    private static void createDiagonal(final Robot robot, final int length) {
         for(int i = 1; i<=length; i++){
-            robot.move();
-            turnRight(robot);
             robot.putBeeper();
             robot.move();
+            turnRight(robot);
+            robot.move();
+            robot.putBeeper();
             robot.turnLeft();
-            robot.move();
-            robot.putBeeper();
-            turnRight(robot);
-            robot.move();
-            robot.putBeeper();
-            robot.move();
-            robot.putBeeper();
-            robot.move();
-            robot.putBeeper();
         }
     }
 }
