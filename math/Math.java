@@ -6,10 +6,9 @@ class Math {
 
     //Use the // to create single line comments to either add info or to take out code for debugging
 
-    System.out.println("Hello world!");
+    //System.out.println("Hello world!");
 
     //We will be using System.out.println and System.out.print throughout the year. Try using both below to see what the difference is!
-
 
 
 
@@ -35,7 +34,9 @@ class Math {
     //For now we are just going to work with primitive
 
     //Create 3 variables of each of the above types (USE GOOD CODING PRACTICE WHEN CREATING THE VARIABLES
-
+      int apples = 10;
+      double decimal = 2.2;
+      boolean isHappening = true;
 
 
 
@@ -51,13 +52,22 @@ class Math {
 
     //Odd integers from 1 to 100, inclusive of both
 
+    // for(int i = 0; i <= 100; i++){
+    //   if(i % 2 == 0){
+    //     System.out.println(i);
+    //   }
+    // }
 
 
     //All multiples of 3 from 1 to 100
-
+      // for(int i = 0; i <= 100; i++){
+      //   if(i % 3 == 0){
+      //     System.out.println(i);
+      //   }
+      // }
 
 
 
     //Starting at 1000, print on the same line (with a - [hypthen] between each) all of the numbers that end in 0 going down to 0
-  }
+    
 }
