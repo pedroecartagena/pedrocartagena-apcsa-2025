@@ -1,5 +1,7 @@
 package robot;
 
+import java.util.Enumeration;
+
 import kareltherobot.*;
 
 public class Roomba implements Directions {
@@ -42,6 +44,13 @@ public class Roomba implements Directions {
 		 * and cleans up all piles of beepers. Think about ways you can break this
 		 * large, complex task into smaller, easier to solve problems.
 		 */
+
+		Enumeration numBeepers = World.beepers();
+		int count = 0;
+		while(numBeepers.hasMoreElements()){
+			numBeepers.nextElement();
+			count += 1;
+		}
 		boolean roomIsClean = false;
 
 		while (roomIsClean == false){
