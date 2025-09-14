@@ -14,11 +14,13 @@ public class Roomba implements Directions {
 		Roomba cleaner = new Roomba();
 		int totalBeepers = cleaner.cleanRoom(worldName, 7, 6);
 		System.out.println("Roomba cleaned up a total of " + totalBeepers + " beepers.");
-
 	}
 
 	// declared here so it is visible in all the methods!
 	private Robot roomba;
+	private boolean roomClean = false;
+	int totalBeepers = 0; 
+	boolean roomIsClean = false;
 
 	// You will need to add many variables!!
 	public static void turnRight(Robot robot){
@@ -26,8 +28,6 @@ public class Roomba implements Directions {
 		robot.turnLeft();
 		robot.turnLeft();
 	}
-	public boolean roomClean = false;
-	int totalBeepers = 0; 
 
 	public int cleanRoom(String worldName, int startX, int startY) {
 
@@ -36,7 +36,7 @@ public class Roomba implements Directions {
 
 		World.readWorld(worldName);
 		World.setVisible(true);
-		World.setDelay(1);
+		World.setDelay(15);
 		
 		roomba = new Robot(startX,startY,East,0);
 
@@ -51,34 +51,31 @@ public class Roomba implements Directions {
 			numBeepers.nextElement();
 			count += 1;
 		}
-		boolean roomIsClean = false;
 
-		while (roomIsClean == false){
+		while (true){
 			if (roomba.frontIsClear()){
 				roomba.move();
-				while(roomba.nextToABeeper()){
+				if (roomba.nextToABeeper()){
 					roomba.pickBeeper();
 					totalBeepers += 1;
+					count -= 1;
+					System.out.println(count);
 				}
+				if (count == 0){
+					break;
+				}	
 			}
-			else if(roomba.frontIsClear() == false && roomba.facingEast()){
+			else if(roomba.facingEast()){
 				roomba.turnLeft();
 				roomba.move();
 				roomba.turnLeft();
 			}
-			else if(roomba.frontIsClear() == false && roomba.facingWest()){
+			else if(roomba.facingWest()){
 				turnRight(roomba);
 				roomba.move();
 				turnRight(roomba);
 			}
-			
 		}
-
-		// the line below causes a null pointer exception
-		// what is that and why are we getting it?
-		roomba.move();
-
-        // This method should return the total number of beepers cleaned up.
 		return totalBeepers;
 	}
 }
