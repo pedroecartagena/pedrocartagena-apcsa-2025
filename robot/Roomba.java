@@ -13,6 +13,7 @@ public class Roomba implements Directions {
 
 		Roomba cleaner = new Roomba();
 		int totalBeepers = cleaner.cleanRoom(worldName, 7, 6);
+		int area = cleaner.cleanRoom(worldName, 7, 6);
 		System.out.println("Roomba cleaned up a total of " + totalBeepers + " beepers.");
 	}
 
@@ -21,6 +22,7 @@ public class Roomba implements Directions {
 	private boolean roomClean = false;
 	int totalBeepers = 0; 
 	boolean roomIsClean = false;
+	public int area = 0;
 
 	// You will need to add many variables!!
 	public static void turnRight(Robot robot){
@@ -36,7 +38,7 @@ public class Roomba implements Directions {
 
 		World.readWorld(worldName);
 		World.setVisible(true);
-		World.setDelay(15);
+		World.setDelay(1);
 		
 		roomba = new Robot(startX,startY,East,0);
 
@@ -45,37 +47,63 @@ public class Roomba implements Directions {
 		 * large, complex task into smaller, easier to solve problems.
 		 */
 
-		Enumeration numBeepers = World.beepers();
-		int count = 0;
-		while(numBeepers.hasMoreElements()){
-			numBeepers.nextElement();
-			count += 1;
-		}
+		int pileCount = getPileCount();
+		int pilesCleaned = 0;
+		area = World.numberOfAvenues() + World.numberOfStreets();
+		int currentPile = 0;
+		int biggestPile = 0;
 
 		while (true){
-			if (roomba.frontIsClear()){
-				roomba.move();
-				if (roomba.nextToABeeper()){
-					roomba.pickBeeper();
-					totalBeepers += 1;
-					count -= 1;
-					System.out.println(count);
-				}
-				if (count == 0){
-					break;
-				}	
+			// did roomba find a pile?
+			if(roomba.nextToABeeper()) {
+				pilesCleaned++;
+				totalBeepers += pickUpPile();
 			}
-			else if(roomba.facingEast()){
+
+			if(pilesCleaned == pileCount) {
+				break;
+			}
+
+			if(currentPile > biggestPile){
+				biggestPile = currentPile;
+			}
+
+			if(roomba.frontIsClear()) {
+				roomba.move();
+				area++;
+			} else if (roomba.facingEast()) {
 				roomba.turnLeft();
 				roomba.move();
 				roomba.turnLeft();
-			}
-			else if(roomba.facingWest()){
+				area++;
+			} else {
 				turnRight(roomba);
 				roomba.move();
 				turnRight(roomba);
+				area++;
 			}
 		}
+		System.out.println("The area of the room is: " + area);
 		return totalBeepers;
+	}
+
+	private int getPileCount() {
+		Enumeration piles = World.beepers();
+		int pileCount = 0;
+		while(piles.hasMoreElements()) {
+			piles.nextElement();
+			pileCount++;
+		}
+		return pileCount;
+	}
+
+	private int pickUpPile() {
+		int pileCount = 0;
+		while (roomba.nextToABeeper()) {
+			roomba.pickBeeper();
+			pileCount++;
+		}
+
+		return pileCount;
 	}
 }
