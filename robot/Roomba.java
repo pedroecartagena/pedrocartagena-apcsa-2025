@@ -48,44 +48,38 @@ public class Roomba implements Directions {
 		int pileCount = getPileCount();
 		int pilesCleaned = 0;
 		int area = World.numberOfAvenues() + World.numberOfStreets();
-		int currentPile = 0;
-		int biggestPile = 0;
+		int biggestPileBeepers = 0;
 		double percentDirty = (double)pileCount / (double)area;
 
 		while (true){
 			// did roomba find a pile?
 			if(roomba.nextToABeeper()) {
 				pilesCleaned++;
-				totalBeepers += pickUpPile();
-				currentPile++;
+				int pileBeepers = pickUpPile();
+				if(pileBeepers > biggestPileBeepers) {
+					biggestPileBeepers = pileBeepers;
+				} 
+				totalBeepers += pileBeepers;
 			}
 
 			if(pilesCleaned == pileCount) {
 				break;
 			}
-
-			if(currentPile > biggestPile){
-				biggestPile = currentPile;
-			}
-
 			if(roomba.frontIsClear()) {
 				roomba.move();
-				area++;
 			} else if (roomba.facingEast()) {
 				roomba.turnLeft();
 				roomba.move();
 				roomba.turnLeft();
-				area++;
 			} else {
 				turnRight(roomba);
 				roomba.move();
 				turnRight(roomba);
-				area++;
 			}
 		}
 		System.out.println("The area of the room is: " + area + " square units.");
 		System.out.println("The total number of piles is: " + pileCount);
-		System.out.println("The largest pile of beepers has " + biggestPile + " beepers.");
+		System.out.println("The largest pile of beepers has " + biggestPileBeepers + " beepers.");
 		System.out.println("The average pile size is " + (double)totalBeepers / (double)pileCount);
 		System.out.println("The percent dirty is " + percentDirty);
 		return totalBeepers;
@@ -107,7 +101,6 @@ public class Roomba implements Directions {
 			roomba.pickBeeper();
 			pileCount++;
 		}
-
 		return pileCount;
 	}
 }
