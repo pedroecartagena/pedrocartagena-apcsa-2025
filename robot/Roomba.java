@@ -40,17 +40,14 @@ public class Roomba implements Directions {
 		
 		roomba = new Robot(startX,startY,East,0);
 
-		/** This section will have all the logic that takes the Robot to every location
-		 * and cleans up all piles of beepers. Think about ways you can break this
-		 * large, complex task into smaller, easier to solve problems.
-		 */
-
+		// variables for use down below
 		int pileCount = getPileCount();
 		int pilesCleaned = 0;
 		int area = World.numberOfAvenues() + World.numberOfStreets();
 		int biggestPileBeepers = 0;
 		double percentDirty = (double)pileCount / (double)area;
 
+		// start cleaning the room
 		while (true){
 			// did roomba find a pile?
 			if(roomba.nextToABeeper()) {
@@ -62,9 +59,12 @@ public class Roomba implements Directions {
 				totalBeepers += pileBeepers;
 			}
 
+			// is the room clean?
 			if(pilesCleaned == pileCount) {
 				break;
 			}
+
+			// move roomba
 			if(roomba.frontIsClear()) {
 				roomba.move();
 			} else if (roomba.facingEast()) {
@@ -77,6 +77,7 @@ public class Roomba implements Directions {
 				turnRight(roomba);
 			}
 		}
+		// print results
 		System.out.println("The area of the room is: " + area + " square units.");
 		System.out.println("The total number of piles is: " + pileCount);
 		System.out.println("The largest pile of beepers has " + biggestPileBeepers + " beepers.");
@@ -85,6 +86,7 @@ public class Roomba implements Directions {
 		return totalBeepers;
 	}
 
+	// gets the number of piles in the room
 	private int getPileCount() {
 		Enumeration piles = World.beepers();
 		int pileCount = 0;
@@ -95,6 +97,7 @@ public class Roomba implements Directions {
 		return pileCount;
 	}
 
+	// gets total number of beepers in a pile and picks them all up
 	private int pickUpPile() {
 		int pileCount = 0;
 		while (roomba.nextToABeeper()) {
