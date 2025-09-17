@@ -50,6 +50,7 @@ public class Roomba implements Directions {
 		int area = World.numberOfAvenues() + World.numberOfStreets();
 		int currentPile = 0;
 		int biggestPile = 0;
+		double percentDirty = (double)pileCount / (double)area;
 
 		while (true){
 			// did roomba find a pile?
@@ -82,8 +83,11 @@ public class Roomba implements Directions {
 				area++;
 			}
 		}
-		System.out.println("The area of the room is: " + area);
+		System.out.println("The area of the room is: " + area + " square units.");
+		System.out.println("The total number of piles is: " + pileCount);
 		System.out.println("The largest pile of beepers has " + biggestPile + " beepers.");
+		System.out.println("The average pile size is " + (double)totalBeepers / (double)pileCount);
+		System.out.println("The percent dirty is " + percentDirty);
 		return totalBeepers;
 	}
 
