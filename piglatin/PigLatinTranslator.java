@@ -32,29 +32,31 @@ public class PigLatinTranslator {
 
         String result = "";
 
-        // TODO: Replace this code to correctly translate a single word.
-        // Start here first!
-        // This is the first place to work.
         int vowelIndex = 0;
         String firstLetter = input.substring(0, 1);
-        int uppercaseIndex = 0;
+
+        if (input == null || input.length() == 0){
+            return "";
+        }
 
         if (isVowel(firstLetter)){
                 result = input + "ay";
             }
         for (int i = 0; i < input.length(); i++){
-            String currentLetter = input.substring(i, i + 1);
             if (isVowel(input.substring(i, i + 1))){
                 vowelIndex = i;
                 break;
             }
         }
-        result = input.substring(vowelIndex) + input.substring(0, vowelIndex) + "ay";
+
+        String start = input.substring(0, vowelIndex);
+        String rest = input.substring(vowelIndex);
+        result = rest + start.toLowerCase() + "ay";
+
         if (Character.isUpperCase(input.charAt(0))){
-            result = result.substring(0, 1).toUpperCase() + result.substring(1).toLowerCase();
+            result = result.substring(0, 1).toUpperCase() + result.substring(1);
         }
-        
-        return ;
+        return result;
     }
 
     public static boolean isVowel(String letter){
