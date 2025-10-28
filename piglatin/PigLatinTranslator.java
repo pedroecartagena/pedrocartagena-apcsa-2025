@@ -33,6 +33,8 @@ public class PigLatinTranslator {
         String result = "";
 
         int vowelIndex = 0;
+        int puncIndex = 0;
+        boolean hasPunc = false;
         String firstLetter = input.substring(0, 1);
 
         if (input == null || input.length() == 0){
@@ -53,6 +55,16 @@ public class PigLatinTranslator {
         String rest = input.substring(vowelIndex);
         result = rest + start.toLowerCase() + "ay";
 
+        for (int j = 0; j < input.length(); j++){
+            if (".?!".indexOf(input.substring(j)) != -1){
+                hasPunc = true;
+                puncIndex = j;
+            }
+        }
+
+        if (hasPunc){
+            result = result.substring(0, puncIndex - 2) + result.substring(puncIndex - 1, puncIndex + 1) + result.substring(puncIndex + 1) + ".";
+        }
         if (Character.isUpperCase(input.charAt(0))){
             result = result.substring(0, 1).toUpperCase() + result.substring(1);
         }
@@ -62,6 +74,14 @@ public class PigLatinTranslator {
     public static boolean isVowel(String letter){
         String vowels = "aeiouAEIOU";
         if (vowels.indexOf(letter) != -1) {
+            return true;
+        }
+        return false;
+    }
+
+    public static boolean isPunc(String letter){
+        String punc = ".!?";
+        if (punc.indexOf(letter) != -1){
             return true;
         }
         return false;
