@@ -66,7 +66,7 @@ public class PigLatinTranslator {
         }
 
         if (hasPunc){
-            result = result.substring(0, puncIndex - 2) + result.substring(puncIndex - 1, puncIndex + 1) + result.substring(puncIndex + 1) + ".";
+            result = result.substring(0, puncIndex - 2) + result.substring(puncIndex - 1, puncIndex + 1) + result.substring(puncIndex + 1) + result.charAt(puncIndex - 2);
         }
         if (Character.isUpperCase(input.charAt(0))){
             result = result.substring(0, 1).toUpperCase() + result.substring(1);
