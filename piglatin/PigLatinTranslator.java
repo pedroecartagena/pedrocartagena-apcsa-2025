@@ -22,9 +22,12 @@ public class PigLatinTranslator {
         // It may be made up of many words.
         // This method must call translateWord once for each word in the string.
 
-        result = translateWord(input);
 
-        return result;
+        for(String word : input.split(" ")) {
+             result += " " + translateWord(word);
+        }
+
+        return result.trim();
     }
 
     private static String translateWord(String input) {
@@ -32,18 +35,18 @@ public class PigLatinTranslator {
 
         String result = "";
 
+        if (input == null || input.trim().length() == 0){
+            return "";
+        }
+
         int vowelIndex = 0;
         int puncIndex = 0;
         boolean hasPunc = false;
         String firstLetter = input.substring(0, 1);
 
-        if (input == null || input.length() == 0){
-            return "";
-        }
-
         if (isVowel(firstLetter)){
-                result = input + "ay";
-            }
+            result = input + "ay";
+        }
         for (int i = 0; i < input.length(); i++){
             if (isVowel(input.substring(i, i + 1))){
                 vowelIndex = i;
