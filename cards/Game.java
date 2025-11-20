@@ -67,7 +67,6 @@ public class Game {
                 System.out.println("Hit");
                 Card card = deck.draw();
                 player.add(card);
-                System
             }
             else if (command.equals("s"))
             {
