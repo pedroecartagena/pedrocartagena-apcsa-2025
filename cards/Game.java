@@ -67,6 +67,7 @@ public class Game {
                 System.out.println("Hit");
                 Card card = deck.draw();
                 player.add(card);
+                System
             }
             else if (command.equals("s"))
             {
@@ -85,7 +86,7 @@ public class Game {
             }
             if (playerScore > 21)
             {
-                System.out.println("BUST! You loose.");
+                System.out.println("BUST! You lose.");
                 dealersWins++;
                 printState();
                 return false;

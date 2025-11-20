@@ -21,6 +21,9 @@ public class Hand {
     }
 
     public Card get(int index) {
+        if (index < 0 || index >= size) {
+            return null;
+        }
         return cards[index];
     }
 
@@ -35,5 +38,16 @@ public class Hand {
         cards[size - 1] = null;
         size--;
         return removedCard;
+    }
+
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < size; i++) {
+            sb.append(cards[i].toString());
+            if (i < size - 1) {
+                sb.append(" ");
+            }
+        }
+        return sb.toString();
     }
 }

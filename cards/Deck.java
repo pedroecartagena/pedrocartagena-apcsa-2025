@@ -2,13 +2,18 @@ package cards;
 
 public class Deck {
     private Card[] cards;
+    private int top;
 
     public Deck() {
+        cards = new Card[52];
+        int idx = 0;
         for (int suite = 0; suite < 4; suite++) {
-            for (int value = 0; value < 12; value++) {
-                cards[suite * 12 + value] = new Card(suite, value + 1);
+            for (int value = 0; value < 13; value++) {
+                cards[idx++] = new Card(suite, value + 1);
             }
         }
+        this.shuffle();
+        top = 0;
     }
 
     public void shuffle() {
@@ -30,10 +35,10 @@ public class Deck {
     }
 
     public Card draw() {
-        if (cards.length == 0) {
+        if (top >= cards.length - 1) {
             return null;
         }
-        return cards[0];
+        return cards[top++];
     }
 
     public void print(int value) {
