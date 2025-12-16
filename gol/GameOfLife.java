@@ -33,21 +33,27 @@ public class GameOfLife implements Board {
     // Step the simulation forward one turn.
     public void step()
     {
-        for (int x = 0; x < board.length; x++) {
-            for (int y = 0; y < board[0].length; y++) {
-                int neighbors = countNeighbors(x, y);
+        int[][] neighbors = new int[this.board.length][this.board[0].length];
+        for (int x = 0; x < this.board.length; x++) {
+            for (int y = 0; y < this.board[0].length; y++) {
+                neighbors[x][y] = countNeighbors(x, y);
+            }
+        }
+
+        for (int x = 0; x < this.board.length; x++) {
+            for (int y = 0; y < this.board[0].length; y++) {
                 boolean isLive = this.board[x][y] == 1;
                 if(isLive) {
-                    if(neighbors < 2 || neighbors > 3) {
+                    if(neighbors[x][y] < 2 || neighbors[x][y] > 3) {
                         this.board[x][y] = 0;
                     }
-                } else if(neighbors == 3) {
+                } else if(neighbors[x][y] == 3) {
                     this.board[x][y] = 1;
                 }
             }
         }
 
-        print();
+       // print();
         // Update the game board, store a 1 if the cell is alive and a 0 otherwise.
     }
 
