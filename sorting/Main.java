@@ -19,12 +19,15 @@ public class Main {
         // TestSuite.run(testInput, 10000);
         TestSuite.run(testInput, 1);
     }
+}
 
     public static int[] randomArray(int length)
     {
-        // TODO: make this return an actual random array of the provided length.
-        int[] a = {10, 5, 3, 2};
-        return a;
+        int[] arr = new int[length];
+        for (int i = 0; i < length; i++){
+            arr[i] = (int) (Math.random() * 100);
+        }
+        return arr;
     }
 
 }
