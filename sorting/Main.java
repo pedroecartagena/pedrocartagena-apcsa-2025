@@ -19,7 +19,6 @@ public class Main {
         // TestSuite.run(testInput, 10000);
         TestSuite.run(testInput, 1);
     }
-}
 
     public static int[] randomArray(int length)
     {
@@ -29,5 +28,4 @@ public class Main {
         }
         return arr;
     }
-
 }
