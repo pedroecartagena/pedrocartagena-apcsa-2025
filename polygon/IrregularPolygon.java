@@ -14,11 +14,18 @@ public class IrregularPolygon {
     public void add(Point2D.Double aPoint)
     {
         // TODO: Add a point to the IrregularPolygon.
+        myPolygon.add(aPoint);
     }
 
     public double perimeter() {
         // TODO: Calculate the perimeter.
-        return 3.14;
+        Double perim = 0.0;
+        for (int i = 0; i < myPolygon.size(); i++) {
+            Point2D.Double point1 = myPolygon.get(i);
+            Point2D.Double point2 = myPolygon.get((i + 1) % myPolygon.size());
+            perim += point1.distance(point2);
+        }
+        return perim;
     }
 
     public double area() {
@@ -33,8 +40,10 @@ public class IrregularPolygon {
         try {
             // TODO: Draw the polygon.
             // Documents: https://pavao.org/compsci/gpdraw/html/gpdraw/DrawingTool.html
-            //DrawingTool myDrawingTool = new DrawingTool(new SketchPad(500, 500));
-            //myDrawingTool.move(50, 50);
+            DrawingTool myDrawingTool = new DrawingTool(new SketchPad(500, 500));
+            for (Point2D.Double point : myPolygon) {
+                myDrawingTool.move(point.getX(), point.getY());
+            };
         } catch (java.awt.HeadlessException e) {
             System.out.println("Exception: No graphics support available.");
         }
