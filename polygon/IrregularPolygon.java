@@ -25,6 +25,7 @@ public class IrregularPolygon {
             Point2D.Double point2 = myPolygon.get((i + 1) % myPolygon.size());
             perim += point1.distance(point2);
         }
+        perim += myPolygon.get(myPolygon.size() - 1).distance(myPolygon.get(0));
         return perim;
     }
 
