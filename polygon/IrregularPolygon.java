@@ -25,7 +25,6 @@ public class IrregularPolygon {
             Point2D.Double point2 = myPolygon.get((i + 1) % myPolygon.size());
             perim += point1.distance(point2);
         }
-        perim += myPolygon.get(myPolygon.size() - 1).distance(myPolygon.get(0));
         return perim;
     }
 
@@ -52,9 +51,14 @@ public class IrregularPolygon {
             // TODO: Draw the polygon.
             // Documents: https://pavao.org/compsci/gpdraw/html/gpdraw/DrawingTool.html
             DrawingTool myDrawingTool = new DrawingTool(new SketchPad(500, 500));
+            myDrawingTool.down();
             for (Point2D.Double point : myPolygon) {
                 myDrawingTool.move(point.getX(), point.getY());
             };
+            if (!myPolygon.isEmpty()) {
+                Point2D.Double firstPoint = myPolygon.get(0);
+                myDrawingTool.move(firstPoint.getX(), firstPoint.getY());
+            }
         } catch (java.awt.HeadlessException e) {
             System.out.println("Exception: No graphics support available.");
         }
