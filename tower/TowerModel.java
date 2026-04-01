@@ -49,7 +49,17 @@ public class TowerModel {
     public void move(int source, int destination)
     {
         System.out.println("Move #" + ++moveCounter + " from " + source + " to " + destination);
-        // TODO!!
+        if ((source >= 0) && (source < towers.length) && (destination >= 0) && (destination < towers.length)){
+            int topEnd = towers[destination].peek();
+            int topStart = towers[source].peek();
+            if (topEnd != 0 && topStart > topEnd)
+            {
+                return;
+            } 
+            System.out.println("Move #" + topStart + " from " + source + " to " + destination);
+            int disc = towers[source].pop();
+            towers[destination].push(disc);
+        }
     }
 
     // Helper method to nicely print the current model state.

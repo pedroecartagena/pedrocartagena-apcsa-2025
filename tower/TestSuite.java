@@ -61,6 +61,8 @@ public class TestSuite {
         {
             System.out.println("--- TEST FAILED! :( Score: " + score + "/" + maxScore + " ---");
         }
+        tiny.print();
+        hanoi.print();
     }
 
     private void expectEqual(int value, int expected, String note)
